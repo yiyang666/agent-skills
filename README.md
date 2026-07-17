@@ -20,9 +20,11 @@ agent-skills/
 │   └── work-cloud-doc-publisher/
 ├── scripts/
 │   ├── link_skills.py            # 把仓库 Skill 链接到不同 Agent 的用户目录
+│   ├── scan_skill.py             # 固定版本的 SkillSpector 安全扫描门禁
 │   └── validate_repo.py          # 本地与 CI 结构检查
 └── .github/workflows/
-    └── validate.yml              # 提交后自动检查
+    ├── security-scan.yml         # PR 中运行 SkillSpector 静态扫描
+    └── validate.yml              # 提交后自动检查仓库结构
 ```
 
 不把飞书、钉钉或其他厂商的官方 Skills 复制进本仓库。第三方 Skill 由其官方安装器维护，本仓库只保存自己编写的编排与工作流 Skill，避免版本分叉和供应链混淆。
@@ -73,8 +75,14 @@ python3 scripts/link_skills.py --target codex
 
 1. 只在本仓库的 `skills/<skill-name>/` 中修改源码。
 2. 执行 `python3 scripts/validate_repo.py`。
-3. 新增、安装或更新 Skill 前，使用 NVIDIA SkillSpector 扫描完整 Skill 目录并完成人工行为审查。
-4. 提交并推送仓库；其他机器拉取后，已有软链接会立即指向新版本。
+3. 创建功能分支并向 `main` 提交 Pull Request，不直接推送 `main`。
+4. 等待“仓库结构校验”和“SkillSpector 静态安全扫描”全部通过。
+5. 下载或在线查看 `skillspector-reports-*` 报告，按 PR 模板完成人工行为审查。
+6. 确认扫描后的 Skill 没有再次变化，再合并 Pull Request；其他机器拉取后，已有软链接会立即指向新版本。
+
+SkillSpector 在 GitHub 托管的 Ubuntu 环境中运行，不要求个人电脑预装 CLI。工作流通过 `uvx` 获取固定提交 `36cb67d8cc1848c6fbf739861e21b5438deb0a97`，并对 `skills/` 下每个完整目录执行静态扫描（`--no-llm`）。扫描器不可用、超时、报告损坏或发现 critical/high 风险时，检查失败并阻止合并。扫描报告保留 14 天。
+
+自动扫描不会判断所有业务意图，也不能替代人工审查。尤其要核对 Skill 的声明与实际脚本、依赖、网络目标、文件访问、凭证访问和外部写入是否一致；medium 风险和敏感能力必须明确接受后才能合并。
 
 不要在 `~/.cursor/skills/`、`~/.agents/skills/` 或 `~/.codex/skills/` 的链接目录里直接维护多份副本。
 
