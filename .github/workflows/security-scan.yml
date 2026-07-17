@@ -19,9 +19,6 @@ jobs:
     name: SkillSpector 静态安全扫描
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    env:
-      UV_CACHE_DIR: ${{ runner.temp }}/uv-cache
-      UV_TOOL_DIR: ${{ runner.temp }}/uv-tools
     steps:
       - name: 检出仓库
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -38,6 +35,9 @@ jobs:
 
       - name: 扫描全部 Skills
         shell: bash
+        env:
+          UV_CACHE_DIR: ${{ runner.temp }}/uv-cache
+          UV_TOOL_DIR: ${{ runner.temp }}/uv-tools
         run: |
           set -euo pipefail
           mkdir -p reports

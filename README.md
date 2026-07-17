@@ -80,7 +80,7 @@ python3 scripts/link_skills.py --target codex
 5. 下载或在线查看 `skillspector-reports-*` 报告，按 PR 模板完成人工行为审查。
 6. 确认扫描后的 Skill 没有再次变化，再合并 Pull Request；其他机器拉取后，已有软链接会立即指向新版本。
 
-SkillSpector 在 GitHub 托管的 Ubuntu 环境中运行，不要求个人电脑预装 CLI。工作流通过 `uvx` 获取固定提交 `36cb67d8cc1848c6fbf739861e21b5438deb0a97`，并对 `skills/` 下每个完整目录执行静态扫描（`--no-llm`）。扫描器不可用、超时、报告损坏或发现 critical/high 风险时，检查失败并阻止合并。扫描报告保留 14 天。
+SkillSpector 在 GitHub 托管的 Ubuntu 环境中运行，不要求个人电脑预装 CLI。工作流通过 `uvx` 获取固定提交 `36cb67d8cc1848c6fbf739861e21b5438deb0a97`，并对 `skills/` 下每个完整目录执行静态扫描（`--no-llm`）。扫描器不可用、超时、报告损坏或发现 critical/high 风险时，检查失败并阻止合并。扫描报告保留 14 天。为避免跨 Skill 引用或共享资源遗漏风险，每个 Pull Request 都会重新扫描全部 Skill。
 
 自动扫描不会判断所有业务意图，也不能替代人工审查。尤其要核对 Skill 的声明与实际脚本、依赖、网络目标、文件访问、凭证访问和外部写入是否一致；medium 风险和敏感能力必须明确接受后才能合并。
 
