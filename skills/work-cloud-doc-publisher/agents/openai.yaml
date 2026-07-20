@@ -1,4 +1,4 @@
 interface:
   display_name: "工作云文档发布"
-  short_description: "将本地设计和测试文档安全可靠地发布到飞书或钉钉云空间"
-  default_prompt: "请把指定的本地 Markdown 文档发布到我选择的飞书或钉钉目录。"
+  short_description: "将 README/TEST_GUIDE 等发布到钉钉或飞书（默认钉钉 Workspace）"
+  default_prompt: "请按 work-cloud-doc-publisher 默认约定，把指定模块的 README.md 和 TEST_GUIDE.md 发布到钉钉。"
