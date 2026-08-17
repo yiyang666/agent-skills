@@ -24,8 +24,7 @@ description: 把开发中的经典问题、缺陷复盘与设计洞见整理成�
 |---|---|
 | 平台 | 钉钉 |
 | Workspace | 我的文档（`dws wiki space list --type myWikiSpace`） |
-| 父目录 | `模块设计与测试说明` |
-| 子文件夹 | **`工程设计复盘`**（不存在则创建） |
+| 目标文件夹 | **`工程设计复盘`**（位于「我的文档」根下；不存在则创建） |
 | 同名策略 | 始终新建；仅用户说「更新/覆盖」时 update |
 | 本地稿 | 先写临时 `.md`，再用 `dws doc create --content-file` |
 | 发布 | 用户说「沉淀到钉钉/建钉钉文档」即视为授权写入 |
@@ -53,8 +52,8 @@ description: 把开发中的经典问题、缺陷复盘与设计洞见整理成�
 
 ### 必问（仅这些）
 
-- 父目录 `模块设计与测试说明` 找不到且无法唯一创建
-- 目标子文件夹同名不唯一
+- 目标文件夹 `工程设计复盘` 找不到且无法唯一创建
+- 目标文件夹同名不唯一
 - 用户只要本地稿、明确不要发布
 
 ## 文档结构（必须覆盖）
@@ -74,9 +73,9 @@ description: 把开发中的经典问题、缺陷复盘与设计洞见整理成�
 PATH += ~/.local/bin
 dws auth status --format json
 wiki space list --type myWikiSpace → workspaceId
-定位父目录「模块设计与测试说明」→ parentNodeId
-wiki node list 找「工程设计复盘」；没有则
-  wiki node create --workspace <WS> --folder <父> --name "工程设计复盘" --type folder
+在「我的文档」根下定位「工程设计复盘」
+  （wiki node list / node search）；没有则
+  wiki node create --workspace <WS> --name "工程设计复盘" --type folder
 doc create --name "<标题>" --folder <工程设计复盘nodeId> --content-file <md> --format json
 doc read 回读标题 + 正文前约 200 字
 ```
@@ -89,7 +88,7 @@ doc read 回读标题 + 正文前约 200 字
 |---|---|
 | 本地稿 | 路径（若保留） |
 | 云文档标题 | … |
-| 目录 | 模块设计与测试说明 / 工程设计复盘 |
+| 目录 | 我的文档 / 工程设计复盘 |
 | 链接 | … |
 | 一句话结论 | … |
 
