@@ -1,15 +1,16 @@
 ---
-name: learn-engineering-postmortem
-description: 把开发中的经典问题、缺陷复盘与设计洞见整理成结构化 Markdown，并默认发布到钉钉「工程设计复盘」目录。用于知识沉淀、面试材料与团队复盘。Use when 用户要求总结经典 bug/设计问题、写复盘文档、沉淀到钉钉、整理面试故事，或提到 postmortem/知识沉淀/工程复盘。不负责日常模块 README/TEST_GUIDE（走 work-module-docs），不负责无分析地只转发已有 Markdown（走 work-cloud-doc-publisher）。
+name: work-knowledge-review
+description: 把工作中遇到并已解决的问题整理成结构化 Markdown，沉淀根因、方案与可迁移经验，并默认发布到钉钉「工程设计复盘」目录。用于工作知识复盘与沉淀。Use when 用户在工作场景中要求复盘已解决问题、写知识沉淀、总结经典 bug/设计取舍、沉淀到钉钉、整理面试故事，或提到知识复盘/工程复盘/postmortem。不负责日常模块 README/TEST_GUIDE（走 work-module-docs），不负责无分析地只转发已有 Markdown（走 work-cloud-doc-publisher）。
 ---
 
-# 工程设计复盘沉淀
+# 工作知识复盘沉淀
 
-将一次「问题 → 根因 → 方案 → 原理 → 发散」整理成可复用的钉钉文档，并沉淀为个人知识。
+将工作中一次「问题 → 根因 → 方案 → 原理 → 发散」整理成可复用的钉钉文档，并沉淀为个人知识。
 
 ## 何时使用
 
-- 用户明确要求：复盘 / 知识沉淀 / 面试材料 / 经典问题总结
+- 工作中刚解决一个问题，需要复盘并沉淀知识
+- 用户明确要求：知识复盘 / 知识沉淀 / 面试材料 / 经典问题总结
 - 刚完成一次高价值修复或架构取舍，需要固化学习点
 - 用户希望「以后这类事都按同样流程沉淀」
 
