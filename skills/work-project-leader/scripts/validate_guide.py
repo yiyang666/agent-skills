@@ -24,7 +24,7 @@ SNAPSHOT_KEYS = (
     "scope",
     "maintenance",
 )
-LINK_RE = re.compile(r"(?<!!)\[[^\]]*\]\(([^)]+)\)")
+LINK_PATTERN = r"(?<!!)\[[^\]]*\]\(([^)]+)\)"
 
 
 def parse_args() -> argparse.Namespace:
@@ -77,7 +77,7 @@ def check_links(guide_dir: Path, errors: list[str], warnings: list[str]) -> int:
     source_links = 0
     for md_file in sorted(guide_dir.glob("*.md")):
         content = read_text(md_file, errors)
-        for raw_target in LINK_RE.findall(content):
+        for raw_target in re.findall(LINK_PATTERN, content):
             target = normalize_link_target(raw_target)
             if target is None:
                 continue
