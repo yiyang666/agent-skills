@@ -9,6 +9,7 @@
 | `work-module-docs` | 工作 | 分析代码模块，生成或更新设计型 `README.md` 与测试部使用的 `TEST_GUIDE.md` |
 | `work-cloud-doc-publisher` | 工作 | 通过飞书或钉钉官方 CLI Skills，把本地文档可靠发布到指定云目录 |
 | `work-knowledge-review` | 工作 | 把工作中遇到并已解决的问题整理成知识复盘，沉淀根因、方案与可迁移经验 |
+| `work-project-leader` | 工作 | 只读分析陌生项目，生成可跳转源码的学习指南与一次性 Agent 上下文快照 |
 
 ## 仓库结构
 
@@ -19,7 +20,8 @@ agent-skills/
 ├── skills/                       # 可安装的 Skill，保持一层扁平目录
 │   ├── work-module-docs/
 │   ├── work-cloud-doc-publisher/
-│   └── work-knowledge-review/
+│   ├── work-knowledge-review/
+│   └── work-project-leader/
 ├── scripts/
 │   ├── link_skills.py            # 把仓库 Skill 链接到不同 Agent 的用户目录
 │   ├── scan_skill.py             # 固定版本的 SkillSpector 安全扫描门禁
@@ -42,7 +44,7 @@ python3 scripts/link_skills.py --target cursor
 默认把 `skills/` 下的全部 Skill 链接到 `~/.cursor/skills/`。只安装指定 Skill：
 
 ```bash
-python3 scripts/link_skills.py --target cursor work-module-docs work-cloud-doc-publisher work-knowledge-review
+python3 scripts/link_skills.py --target cursor work-module-docs work-cloud-doc-publisher work-knowledge-review work-project-leader
 ```
 
 预览而不写入：
