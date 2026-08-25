@@ -1,0 +1,4 @@
+interface:
+  display_name: "陌生项目领航"
+  short_description: "把陌生代码仓库梳理成可跳转源码的项目指南"
+  default_prompt: "使用 $work-project-leader 分析这个陌生仓库，并生成一次性、可跳转源码的 project_guide 快照。"
