@@ -17,9 +17,9 @@ from pathlib import Path
 from typing import Any
 
 
-THREAD_ID_RE = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
-PLACEHOLDER_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}-[0-9]+$")
-UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+THREAD_ID_PATTERN = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+PLACEHOLDER_PATTERN = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}-[0-9]+"
+UUID_PATTERN = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
 VISIBLE_TYPES = {
     "message",
     "function_call",
@@ -41,7 +41,7 @@ def codex_home(value: str | None) -> Path:
 
 
 def rollout_thread_id(path: Path) -> str | None:
-    matches = THREAD_ID_RE.findall(path.name)
+    matches = re.findall(THREAD_ID_PATTERN, path.name)
     return matches[-1] if matches else None
 
 
@@ -100,9 +100,9 @@ def incompatible_reasoning(value: Any) -> bool:
     encrypted = value.get("encrypted_content")
     return bool(
         isinstance(item_id, str)
-        and UUID_RE.fullmatch(item_id)
+        and re.fullmatch(UUID_PATTERN, item_id)
         and isinstance(encrypted, str)
-        and PLACEHOLDER_RE.fullmatch(encrypted)
+        and re.fullmatch(PLACEHOLDER_PATTERN, encrypted)
     )
 
 
