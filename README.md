@@ -6,6 +6,7 @@
 
 | Skill | 分类 | 用途 |
 |---|---|---|
+| `codex-session-recovery` | 工具 | 安全定位、备份并修复模型源切换造成的 Codex 会话历史不兼容 |
 | `work-module-docs` | 工作 | 分析代码模块，生成或更新设计型 `README.md` 与测试部使用的 `TEST_GUIDE.md` |
 | `work-cloud-doc-publisher` | 工作 | 通过飞书或钉钉官方 CLI Skills，把本地文档可靠发布到指定云目录 |
 | `work-knowledge-review` | 工作 | 把工作中遇到并已解决的问题整理成知识复盘，沉淀根因、方案与可迁移经验 |
@@ -18,6 +19,7 @@ agent-skills/
 ├── AGENTS.md                     # Agent 维护仓库时必须遵守的规则
 ├── README.md                     # 使用与管理说明
 ├── skills/                       # 可安装的 Skill，保持一层扁平目录
+│   ├── codex-session-recovery/
 │   ├── work-module-docs/
 │   ├── work-cloud-doc-publisher/
 │   ├── work-knowledge-review/
@@ -44,7 +46,7 @@ python3 scripts/link_skills.py --target cursor
 默认把 `skills/` 下的全部 Skill 链接到 `~/.cursor/skills/`。只安装指定 Skill：
 
 ```bash
-python3 scripts/link_skills.py --target cursor work-module-docs work-cloud-doc-publisher work-knowledge-review work-project-leader
+python3 scripts/link_skills.py --target cursor codex-session-recovery work-module-docs work-cloud-doc-publisher work-knowledge-review work-project-leader
 ```
 
 预览而不写入：

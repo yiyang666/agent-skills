@@ -1,0 +1,4 @@
+interface:
+  display_name: "Codex 会话恢复"
+  short_description: "安全诊断并修复模型源切换造成的 Codex 会话历史不兼容"
+  default_prompt: "使用 $codex-session-recovery 诊断并修复无法继续对话的 Codex 会话。"
